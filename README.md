@@ -1,97 +1,126 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Audio Format Converter
 
-# Getting Started
+A React Native application for converting audio files between different formats using FFmpeg.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- **Cross-platform**: Works on both iOS and Android
+- **Multiple formats**: Supports MP3, WAV, FLAC, OGG, AAC, M4A
+- **Local file access**: Browse and convert audio files stored on your device
+- **Progress tracking**: Real-time conversion progress with visual feedback
+- **Quality settings**: Configure bitrate, sample rate, and channels
+- **Clean UI**: Simple and intuitive user interface
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Supported Conversions
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Input Formats
+- MP3 (.mp3)
+- WAV (.wav)
+- FLAC (.flac)
+- OGG (.ogg)
+- AAC (.aac)
+- M4A (.m4a)
+- WMA (.wma)
 
-```sh
-# Using npm
-npm start
+### Output Formats
+- MP3 (.mp3)
+- WAV (.wav)
+- AAC (.aac)
+- M4A (.m4a)
 
-# OR using Yarn
-yarn start
+## Installation
+
+### Prerequisites
+- Node.js >= 18
+- React Native development environment set up
+- Android Studio (for Android)
+- Xcode (for iOS)
+
+### Install Dependencies
+```bash
+npm install
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+### iOS Setup
+```bash
+cd ios && pod install
 ```
 
-### iOS
+### Android Setup
+No additional setup required, but ensure you have:
+- Android SDK >= 21
+- Android NDK configured
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## Usage
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+1. **Launch the app**
+2. **Select audio file**: Tap "Browse Files" to choose an audio file from your device
+3. **Choose output format**: Select MP3, WAV, AAC, or M4A
+4. **Convert**: Tap "Convert to [format]" to start conversion
+5. **Wait**: View progress as the file is converted
+6. **Save**: Converted files are saved to:
+   - **Android**: `/storage/emulated/0/Android/data/com.temp/files/AudioConverter/Output/`
+   - **iOS**: `/Documents/AudioConverter/Output/`
 
-```sh
-bundle install
+## Technical Details
+
+### Dependencies
+- **FFmpeg**: Audio processing via `ffmpeg-kit-react-native`
+- **File System**: File operations via `react-native-fs`
+- **Document Picker**: File selection via `@react-native-documents/picker`
+- **Progress**: Visual progress via `react-native-progress`
+
+### Permissions
+
+#### Android
+- `READ_EXTERNAL_STORAGE`
+- `WRITE_EXTERNAL_STORAGE`
+- `MANAGE_EXTERNAL_STORAGE` (for Android 11+)
+
+#### iOS
+- `NSPhotoLibraryUsageDescription`
+- `NSPhotoLibraryAddUsageDescription`
+- `NSAppleMusicUsageDescription`
+- `NSDocumentsFolderUsageDescription`
+
+## Development
+
+### Running the App
+
+#### Android
+```bash
+npx react-native run-android
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+#### iOS
+```bash
+npx react-native run-ios
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+### Testing
+```bash
+npm test
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Linting
+```bash
+npm run lint
+```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Troubleshooting
 
-## Step 3: Modify your app
+### Common Issues
 
-Now that you have successfully run the app, let's make changes!
+1. **Permission denied on Android**: Ensure storage permissions are granted
+2. **FFmpeg not found**: Check that `ffmpeg-kit-react-native` is properly linked
+3. **iOS file access**: Ensure all required permissions are added to Info.plist
+4. **Large files**: Consider using lower bitrate settings for large audio files
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### Android 11+ Storage Access
+For Android 11 and above, you may need to:
+1. Enable "Allow management of all files" in app settings
+2. Or use scoped storage approach
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## License
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+MIT License - feel free to use and modify as needed.

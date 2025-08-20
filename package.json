@@ -1,5 +1,5 @@
 {
-  "name": "Temp",
+  "name": "AudioConvert",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,12 +7,17 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
+    "clean": "react-native clean",
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-documents/picker": "^10.1.5",
+    "@react-native/new-app-screen": "0.81.0",
+    "ffmpeg-kit-react-native": "^6.0.2",
     "react": "19.1.0",
     "react-native": "0.81.0",
-    "@react-native/new-app-screen": "0.81.0",
+    "react-native-fs": "^2.20.0",
+    "react-native-progress": "^5.0.1",
     "react-native-safe-area-context": "^5.5.2"
   },
   "devDependencies": {
