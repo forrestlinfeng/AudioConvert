@@ -14,7 +14,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'Temp' do
+target 'AudioConvert' do
   config = use_native_modules!
 
   use_react_native!(
@@ -31,5 +31,17 @@ target 'Temp' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # Fix non-modular include error for React-Fabric
+    installer.pods_project.targets.each do |target|
+      if target.name.include?('React-Fabric')
+        target.build_configurations.each do |config|
+          config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+        end
+      end
+    end
   end
+
+  # pod 'ffmpeg-kit-react-native', :subspecs => ['audio'], :podspec => '../node_modules/ffmpeg-kit-react-native/ffmpeg-kit-react-native.podspec'
+
 end
